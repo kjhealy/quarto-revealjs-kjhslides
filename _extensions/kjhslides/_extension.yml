@@ -6,8 +6,10 @@ contributes:
   formats:
     revealjs:
       theme: [default, kjhslides.scss]
+      transition: fade
       menu:
         side: left
       slide-number: true
       date-format: long
+      highlight-style: dracula-kjh.theme
 

@@ -1,27 +1,169 @@
 /*-- scss:defaults --*/
 
-$font-family-sans-serif: "Tenso Slab" !default;
-$font-family-monospace: "Berkeley Mono" !default;
-
 // colors
-$body-bg: #f0f1eb !default;
-$body-color: #000 !default;
-$link-color: #51483d !default;
+// Plasma colors
+$colors-dark: (
+    #212E3E,  /* 1: Dull Purple */
+    #480B6A,  /* 2: Obsidian Shell */
+    #771C6D,  /* 3: Pure Purple */
+    #A52C60,  /* 4: Parlour Red */
+    #CF4446,  /* 5: Bullfighters Red */
+    #EE6A24,  /* 6: Fuego Nuevo */
+    #FB9E07,  /* 7: Bonus Level */
+    #F6D645   /* 8: Python Yellow */
+);
+
+$colors-light: (
+    #F6F6F6,  /* 1: Off-white */
+    #CCAEED,  /* 2: Purple Sand */
+    #F5ABEA,  /* 3: Pinky Swear */
+    #FFB7CD,  /* 4: Baby Pink */
+    #FFC6C6,  /* 5: Cinderella Pink */
+    #FFD3CA,  /* 6: Pale Jasper */
+    #FFE2D0,  /* 7: Powdered Peach */
+    #FFF2CE   /* 8: Bird's Child */
+);
+
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #ddd !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+
+/* SCSS HEX */
+$my-red: #eb1e4eff;
+$my-brown: #582630ff;
+$my-yellow: #ffc847ff;
+$my-orange: #f68434ff;
+$my-off-white: #f6f6f6;
+$my-green: #1BB71Cff;
+$my-lblue: #139fecff;
+$my-blue: #252F3E;
+$my-pink: #FC2290;
+$my-lblue: #139fecff;
+// $my-blue: #073b4cff;
+$my-indigo: #771C6D;
+$my-purple:  #480B6A;
+$my-dark-text: #333333;
+$kjh-grey: #F6F6F6;
+$main-title-inverse: #252F3E;
+$chunk-background: #FCF6E6;
+
+$blue:    $my-blue !default;
+$indigo:  $my-indigo !default;
+$purple:  $my-purple !default;
+$pink:    $my-pink !default;
+$red:     $my-red !default;
+$orange:  $my-orange !default;
+$yellow:  $my-yellow !default;
+$green:   $my-green !default;
+$teal:    $my-green !default;
+$cyan:    $my-lblue !default;
+
+
+$primary:       $my-blue !default;
+$secondary:     $gray-500 !default;
+$success:       $my-green !default;
+$info:          $my-blue !default;
+$warning:       $my-yellow !default;
+$danger:        $my-lblue !default;
+$danger-text:   $my-off-white !default;
+$light:         $my-off-white !default;
+$dark:          $gray-800 !default;
+
+
+
+// fonts
+$font-family-sans-serif: "Tenso Slab" !default;
+$font-family-monospace: "BerkeleyMono" !default;
+
+$presentation-font-size-root: 2rem !default;
+$presentation-heading-font-weight: 700 !default;
+
+$body-bg: $my-off-white !default;
+$body-color: $my-dark-text !default;
+$link-color: $my-red !default;
 $selection-bg: #26351c !default;
+$code-color: $my-green;
 
 // headings
 $presentation-heading-font: "Tenso Slab" !default;
 $presentation-heading-color: #383d3d !default;
 
+$presentation-h1-font-size: $presentation-font-size-root * 2.45;
+$presentation-h2-font-size: $presentation-font-size-root * 1.85;
+$presentation-h3-font-size: $presentation-font-size-root * 1.5;
+$presentation-h4-font-size: $presentation-font-size-root * 1.2;
+$presentation-h5-font-size: $presentation-font-size-root * 1;
+$presentation-h6-font-size: $presentation-font-size-root * 0.8;
+
 /*-- scss:rules --*/
+
+.huge p {
+  font-size: 4em;
+  line-height: 0.9em !important;
+  font-weight: bold;
+  text-align: center;
+}
 
 .reveal a {
   line-height: 1.3em;
 }
 
+.reveal .slide h2 {
+  background-color: $main-title-inverse;
+  color: $my-off-white;
+  line-height: 1.3;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+
+// Color classes for divider-slide backgrounds,
+// paragraphs and header foregrounds. The !important
+// flag turns out to be, uh, important for this
+// to work.
+
+.fg-yellow p {
+  color: $my-yellow !important;
+}
+
+.fg-green p {
+  color: $my-green !important;
+}
+
+.fg-blue p {
+  color: $my-green !important;
+}
+
+
+.fg-yellow h1 {
+  color: $my-yellow !important;
+}
+
+.fg-green h1 {
+  color: $my-green !important;
+}
+
+.fg-blue h1 {
+  color: $my-green !important;
+}
+
+// For section pages
+.bg-blue {
+  background-color: $my-blue !important;
+}
+
+.bg-blue code {
+  color: $my-green !important;
+}
+
+
 // Body text: Tenso Slab
-
-
 @font-face {
     font-family: 'Tenso Slab';
     src: url('https://kjhealy.co/fonts/03-tenso-slab-regular_42_ik.woff2') format('woff2');
