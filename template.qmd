@@ -2,7 +2,7 @@
 title: Quarto reveal.js kjhslides
 subtitle: Slide theme
 format:
-  clean-revealjs:
+  kjhslides-revealjs:
     self-contained: true
 author:
   - name: Kieran Healy
