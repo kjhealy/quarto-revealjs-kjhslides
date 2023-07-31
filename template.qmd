@@ -1,0 +1,23 @@
+---
+title: Quarto reveal.js kjhslides
+subtitle: Slide theme
+format:
+  clean-revealjs:
+    self-contained: true
+author:
+  - name: Kieran Healy
+    affiliations: Duke University
+date: last-modified
+---
+
+# H1
+
+- Hello
+
+## H2
+
+- Hello there 
+
+### H3
+
+- Hello there 2
