@@ -1,29 +1,6 @@
 /*-- scss:defaults --*/
 
 // colors
-// Plasma colors
-$colors-dark: (
-    #212E3E,  /* 1: Dull Purple */
-    #480B6A,  /* 2: Obsidian Shell */
-    #771C6D,  /* 3: Pure Purple */
-    #A52C60,  /* 4: Parlour Red */
-    #CF4446,  /* 5: Bullfighters Red */
-    #EE6A24,  /* 6: Fuego Nuevo */
-    #FB9E07,  /* 7: Bonus Level */
-    #F6D645   /* 8: Python Yellow */
-);
-
-$colors-light: (
-    #F6F6F6,  /* 1: Off-white */
-    #CCAEED,  /* 2: Purple Sand */
-    #F5ABEA,  /* 3: Pinky Swear */
-    #FFB7CD,  /* 4: Baby Pink */
-    #FFC6C6,  /* 5: Cinderella Pink */
-    #FFD3CA,  /* 6: Pale Jasper */
-    #FFE2D0,  /* 7: Powdered Peach */
-    #FFF2CE   /* 8: Bird's Child */
-);
-
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #ddd !default;
@@ -34,7 +11,6 @@ $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 
-/* SCSS HEX */
 $my-red: #eb1e4eff;
 $my-brown: #582630ff;
 $my-yellow: #ffc847ff;
@@ -42,10 +18,10 @@ $my-orange: #f68434ff;
 $my-off-white: #f6f6f6;
 $my-green: #1BB71Cff;
 $my-lblue: #139fecff;
+// $my-blue: #073b4cff;
 $my-blue: #252F3E;
 $my-pink: #FC2290;
 $my-lblue: #139fecff;
-// $my-blue: #073b4cff;
 $my-indigo: #771C6D;
 $my-purple:  #480B6A;
 $my-dark-text: #333333;
@@ -76,7 +52,6 @@ $light:         $my-off-white !default;
 $dark:          $gray-800 !default;
 
 
-
 // fonts
 $font-family-sans-serif: "Tenso Slab" !default;
 $font-family-monospace: "BerkeleyMono" !default;
@@ -87,12 +62,12 @@ $presentation-heading-font-weight: 700 !default;
 $body-bg: $my-off-white !default;
 $body-color: $my-dark-text !default;
 $link-color: $my-red !default;
-$selection-bg: #26351c !default;
+$selection-bg: $my-indigo !default;
 $code-color: $my-green;
 
 // headings
 $presentation-heading-font: "Tenso Slab" !default;
-$presentation-heading-color: #383d3d !default;
+$presentation-heading-color: $main-title-inverse !default;
 
 $presentation-h1-font-size: $presentation-font-size-root * 2.45;
 $presentation-h2-font-size: $presentation-font-size-root * 1.85;
@@ -103,6 +78,91 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 
 /*-- scss:rules --*/
 
+// Title slide (thanks Grant McDermott <@gmcd>)
+#title-slide {
+
+  .title {
+    color: $my-yellow;
+    font-size: 3em;
+    font-weight: bold;
+  }
+
+  .subtitle {
+    color: $my-green;
+    font-size: 2em;
+    font-style: italic;
+  }
+
+  .quarto-title-author-email {
+    font-family: $font-family-monospace;
+    color: $my-off-white;
+    text-align: centernter;
+  }
+
+  .author,
+  .quarto-title-author-name {
+    color: $my-off-white;
+    text-align: center;
+  }
+
+}
+
+// H1 slide
+.title-slide {
+
+  text-align: left;
+
+  h1 {
+    color: $my-red;
+    font-weight: bold;
+  }
+
+  p {
+    color: $my-lblue;
+    font-size: 1em;
+    line-height: 1.1em !important;
+    font-weight: bold;
+  }
+
+}
+
+// Console/text output
+
+.cell-output, .cell-output-stdout pre code {
+  background-color: $chunk-background;
+  margin-top: 0.15em;
+}
+
+.text pre, .text code {
+  border-left: 2px;
+  border-left-color: $my-lblue;
+  background-color: $chunk-background;
+}
+
+
+.smallcode pre, .smallcode code {
+  font-size: 0.7rem;
+}
+
+
+
+// Miscellaneous helper classes
+
+// align p text right, left, center
+.right p, .right li, .right h1, .right h2, .right h3, .right h4, .right h5, .right h6 {
+  text-align: right;
+}
+
+.center p, .center li, .center h1, .center h2, .center h3, .center h4, .center h5, .center h6 {
+  text-align: center;
+}
+
+.left p, .left li, .left h1, .left h2, .left h3, .left h4, .left h5, .left h6 {
+  text-align: left;
+}
+
+// very large p text
+
 .huge p {
   font-size: 4em;
   line-height: 0.9em !important;
@@ -110,9 +170,14 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
   text-align: center;
 }
 
+
+
 .reveal a {
   line-height: 1.3em;
 }
+
+// Stock h2 banner with reversed colors
+// (the default for the theme)
 
 .reveal .slide h2 {
   background-color: $main-title-inverse;
@@ -126,8 +191,41 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 // Color classes for divider-slide backgrounds,
 // paragraphs and header foregrounds. The !important
 // flag turns out to be, uh, important for this
-// to work.
+// to work. This is gross of course, but right now
+// there appears to be no way to get a per-slide color
+// _except_ by doing e.g. # Title {background-color="#AABBCC"}
+// which kind of defeats the purpose of having variables
+// and classes to define colors in an SCSS file
 
+// direct adjustment
+.fg-yellow {
+  color: $my-yellow;
+}
+
+.fg-blue {
+  color: $my-blue;
+}
+
+.fg-lblue {
+  color: $my-lblue;
+}
+
+.fg-orange {
+  color: $my-orange;
+}
+
+.fg-red {
+  color: $my-red;
+}
+
+.fg-pink {
+  color: $my-pink;
+}
+
+
+
+
+// p elements
 .fg-yellow p {
   color: $my-yellow !important;
 }
@@ -137,10 +235,23 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 }
 
 .fg-blue p {
-  color: $my-green !important;
+  color: $my-blue !important;
+}
+
+.fg-orange p {
+  color: $my-orange !important;
+}
+
+.fg-pink p {
+  color: $my-pink !important;
+}
+
+.fg-red p {
+  color: $my-red !important;
 }
 
 
+// h1 elements
 .fg-yellow h1 {
   color: $my-yellow !important;
 }
@@ -153,7 +264,24 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
   color: $my-green !important;
 }
 
-// For section pages
+.fg-lblue h1 {
+  color: $my-lblue !important;
+}
+
+.fg-pink h1 {
+  color: $my-pink !important;
+}
+
+.fg-orange h1 {
+  color: $my-orange !important;
+}
+
+
+.fg-red h1 {
+  color: $my-red !important;
+}
+
+// For section backgrounds
 .bg-blue {
   background-color: $my-blue !important;
 }
