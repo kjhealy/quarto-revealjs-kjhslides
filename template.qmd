@@ -1,23 +1,462 @@
 ---
-title: Quarto reveal.js kjhslides
+title: Quarto kjhslides
 subtitle: Slide theme
-format:
-  kjhslides-revealjs:
-    self-contained: true
+format: kjhslides-revealjs
+filters: 
+  - invert-h1
 author:
   - name: Kieran Healy
-    affiliations: Duke University
+    email: kieran.healy@duke.edu
 date: last-modified
 ---
 
-# H1
+```{r}
+#| label: setup
+#| include: false
 
-- Hello
+library(kjhslides)
 
-## H2
+kjh_register_tenso()
+kjh_set_knitr_opts()
+kjh_set_slide_theme()
+```
 
-- Hello there 
 
-### H3
+# This is an H1-level header
 
-- Hello there 2
+Hello there! I am just some regular text. You can see an H1-level slide is meant for section separation and big callouts and the like. The background color of H1 slides, and the color of H1 text, is set via a lua filter.
+
+## This is an H2 header
+
+I am more your regular topical slide.
+
+- It will appear in the overview hierarchy correctly 
+- i.e. below the earlier H1
+
+## This is also an H2-level header
+
+- Hello there! I am a bullet point
+- Everyone hates bullet points
+- And yet here we are
+
+## This is another H2-level header
+
+I create a new slide when invoked. 
+
+### This is an H3-level header
+
+I do not create a new slide when invoked.
+
+#### And this is H4
+
+Me neither.
+
+
+#### And this is H5
+
+You get the idea.
+
+#### And this is H6
+
+The humblest header level
+
+# Another First Level Header {.fg-lblue}
+
+This time the foreground is light blue, but this text is off-white
+
+## Followed by an H2
+
+With some content
+
+
+# Hello I'm `green()`?
+
+Code should set up as green on this sort of H1 slide.
+
+
+## Does subhed structure still work?
+
+- Yes it does: things appear in the correct hierarchy when you press `O`
+
+
+---
+
+::::{.huge}
+There's a class for huge text that's not a header
+::::
+
+::::{.huge .fg-green}
+We can specify its color, too
+::::
+
+
+---
+
+---
+
+## Three dashes makes a slide break too
+
+Use two to give a blank slide. 
+
+```{.zsh}
+---
+
+---
+```
+
+
+# Markdown
+
+## Standard Markdown Stuff
+
+Unordered lists:
+
+- Bullet points again 
+    - You cannot escape me 
+    - Next slide please
+
+Or ordered lists
+
+1. This is the first item
+    1. Nesting lists is not a good idea on the whole
+    2. You're giving a talk, not reading a contract
+2. Just don't do it.   
+
+## Standard Markdown Stuff
+
+Format text in **bold**, *italic*, or [include URLs](https://socviz.co).
+
+## Maths
+
+Inline mode: $c^2 = a^2 + b^2$
+
+Or in Display mode: 
+
+$$p(x) \sim \frac{1}{\sqrt{2\pi\sigma^2}} \exp{ \bigg[-\frac{1}{2}\bigg( \frac{x-\mu}{\sigma}\bigg)^2 \bigg] }$$
+
+## Static Images {.fg-yellow}
+
+![](images/streams-lakes-bw-100-w-01.jpg)
+
+
+# Code
+
+## Code
+
+The dot syntax for codeblocks we don't want to run is nice.
+
+```{.r}
+gss_svy |> 
+  group_by(year) |> 
+  group_map_dfr(possibly(~ tidy(svyglm(fefam_n ~ age + sex + race, 
+                       design = .x, 
+                       family = quasibinomial(),
+                       na.action = na.omit),
+                       conf.int = TRUE), 
+                    otherwise = NULL))
+```
+
+::: aside
+<https://quarto.org/docs/presentations/revealjs/#code-blocks>
+:::
+
+
+## Executable Code
+
+And we can run it in the usual way:
+
+```{r}
+letters 
+```
+
+
+## Executable Code
+
+```{r}
+#| label: tidyverse
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(socviz)
+```
+
+## Executable Code
+
+```{r}
+#| label: gss-fig
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-cap: "GSS Plot"
+
+gss_sm |> 
+  group_by(bigregion, religion) |> 
+  tally() |> 
+  mutate(pct = round((n/sum(n))*100), 1) |> 
+  drop_na() |> 
+  ggplot(mapping = aes(x = pct, y = reorder(religion, -pct), fill = religion)) +
+  geom_col() +
+    labs(x = "Percent", y = NULL) +
+    guides(fill = "none") + 
+    facet_wrap(~ bigregion, nrow = 1)
+
+```
+
+
+## Executable Code, but smaller 
+
+:::{.smallcode}
+
+```{r}
+#| label: gss-fig-2
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-cap: "GSS Plot"
+
+gss_sm |> 
+  group_by(bigregion, religion) |> 
+  tally() |> 
+  mutate(pct = round((n/sum(n))*100), 1) |> 
+  drop_na() |> 
+  ggplot(mapping = aes(x = pct, y = reorder(religion, -pct), fill = religion)) +
+  geom_col() +
+    labs(x = "Percent", y = NULL) +
+    guides(fill = "none") + 
+    facet_wrap(~ bigregion, nrow = 1)
+
+```
+
+:::
+
+
+## Callouts
+
+::: aside
+[Documentation](https://quarto.org/docs/authoring/callouts.html).
+:::
+
+:::{.callout-note}
+## Informational note
+A note with a headline
+:::
+
+::: {.callout-caution collapse="true"}
+## Expand To Learn About Collapse
+This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default. Seems not to be working rn. Hm.
+:::
+
+
+::: {.callout-warning}
+Take care
+:::
+
+
+
+# Columns
+
+## We can use two columns
+
+:::: {.columns}
+
+::: {.column width="45%"}
+This is the left column
+
+- In this version the text is still left-aligned
+:::
+
+::: {.column width="45%"}
+This is the right column
+
+- And it is left-aligned in both columns
+:::
+
+::::
+
+::: aside
+<https://quarto.org/docs/presentations/revealjs/#multiple-columns>
+:::
+
+
+## We can use two columns
+
+:::: {.columns}
+
+::: {.column width="45%"}
+This is the left column
+
+In this column the text is still left-aligned
+
+#### What about a header
+
+Should be left
+
+:::
+
+::: {.column width="45%" .right}
+This is the right column
+
+The text in this column should be right-aligned
+
+#### What about a header {.right}
+
+Should be right
+:::
+
+::::
+
+
+
+## Two Column Text & figures
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](images/streams-lakes-bw-100-w-01.jpg)
+:::
+
+::: {.column width="50%"}
+
+This is a picture of every river in the United States. 
+It makes for a nice poster. 
+:::
+
+::::
+
+Sub-panel and multi-panel figures are also natively supported by Quarto.
+See [here](https://quarto.org/docs/authoring/figures.html#subfigures).
+
+## Code and its output
+
+```{r}
+#| echo: true
+#| label: fig-vert
+#| fig-cap: "Vertical plot" 
+#| fig-height: 6
+#| fig-width: 3
+#| output-location: column
+
+gss_sm |> 
+  group_by(bigregion, religion) |> 
+  tally() |> 
+  mutate(pct = round((n/sum(n))*100), 1) |> 
+  drop_na() |> 
+  ggplot(mapping = 
+           aes(x = pct, 
+               y = reorder(religion, -pct), 
+               fill = religion)) +
+  geom_col() +
+    labs(x = "Percent", y = NULL) +
+    guides(fill = "none") + 
+    facet_wrap(~ bigregion, ncol = 1)
+```
+
+
+# Tables 
+
+
+## Example
+
+```{r}
+library(gtsummary)
+trial
+```
+
+
+## Example
+
+```{r}
+#| output-location: slide
+trial |> 
+  tbl_summary(
+    by = trt, # split table by group
+    missing = "no" # don't list missing data separately
+  ) |>
+  add_n() |> # add column with total number of non-missing observations
+  add_p() |> # test for a difference between groups
+  modify_header(label = "**Variable**") |> # update the column header
+  bold_labels()
+
+```
+
+
+## Example 2
+
+`gtsummary()` out of the box:
+
+```{r}
+#| output-location: slide
+
+gss_sm |> 
+  select(race, degree, marital) |> 
+  drop_na() |> 
+  tbl_summary(
+    by = race, # split table by group
+    missing = "no" # don't list missing data separately
+  ) |>
+  add_n() |> # add column with total number of non-missing observations
+  modify_header(label = "**Variable**") |> # update the column header
+  bold_labels()
+
+```
+
+## Example 3
+
+With a little more tweaking ...
+
+```{r}
+#| output-location: slide
+
+trial |>
+  select(trt, age, marker) |>
+  tbl_summary(
+    by = trt,
+    type = all_continuous() ~ "continuous2",
+    statistic = all_continuous() ~ c("{N_nonmiss}",
+                                     "{mean} ({sd})", 
+                                     "{median} ({p25}, {p75})", 
+                                     "{min}, {max}"),
+    missing = "no"
+  ) |>
+  italicize_levels() |> 
+  as_flex_table()
+```
+
+## Tables with `skimr`
+
+::: {.custom-small-table}
+
+```{r}
+#| tbl-cap: Skim Table 
+#| output-location: slide
+library(skimr)
+my_skim <- skim_with(numeric = sfl(p25 = NULL, p50 = NULL, p75 = NULL)) 
+socviz::organdata |> 
+  my_skim(where(is.numeric)) |> 
+  gt::gt() |> 
+  gt::fmt_number(
+    n_sigfig = 2,
+    use_seps = FALSE
+  ) |> 
+  gt::opt_stylize(style = 6, 
+                  color = "blue", 
+                  add_row_striping = TRUE)
+```
+
+:::
+
+## Installation
+
+Install the theme without the template:
+
+```{.zsh}
+quarto install extension kjhealy/quarto-revealjs-kjhslides
+```
+
+Install the theme with the template:
+
+```{.zsh}
+quarto use template kjhealy/quarto-revealjs-kjhslides
+```
+

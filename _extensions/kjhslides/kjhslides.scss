@@ -126,7 +126,12 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 
 }
 
-// Console/text output
+// Console/text/cell output
+
+
+.custom-small-table table {
+        font-size: .5em
+      }
 
 .cell-output, .cell-output-stdout pre code {
   background-color: $chunk-background;
@@ -197,7 +202,23 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 // which kind of defeats the purpose of having variables
 // and classes to define colors in an SCSS file
 
-// direct adjustment
+// lua filter classes for h1 type slides
+.inv-title h1 {
+  color: $my-yellow !important;
+  background-color: $my-blue;
+}
+
+.inv-title p {
+  color: $my-off-white !important;
+  background-color: $my-blue;
+}
+
+.inv-title code {
+  color: $my-green !important;
+  background-color: $my-blue;
+}
+
+// direct adjustment classes
 .fg-yellow {
   color: $my-yellow;
 }
@@ -226,6 +247,11 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 
 
 // p elements
+.fg-white p {
+  color: $my-off-white !important;
+}
+
+
 .fg-yellow p {
   color: $my-yellow !important;
 }
@@ -252,6 +278,11 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 
 
 // h1 elements
+.fg-white h1 {
+  color: $my-off-white !important ;
+}
+
+
 .fg-yellow h1 {
   color: $my-yellow !important;
 }

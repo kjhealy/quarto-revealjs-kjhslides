@@ -7,9 +7,10 @@ contributes:
     revealjs:
       theme: [default,kjhslides.scss]
       transition: fade
+      transition-speed: slow
       menu:
         side: left
-      slide-number: true
+      slide-number: false
       date-format: long
       highlight-style: catppuccin-mocha.theme
       title-slide-attributes:
