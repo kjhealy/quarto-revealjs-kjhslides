@@ -166,16 +166,19 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
   text-align: left;
 }
 
-// very large p text
+// very large text
 
 .huge p {
   font-size: 4em;
-  line-height: 0.9em !important;
   font-weight: bold;
   text-align: center;
+  line-height: 0.85em;
+  margin-bottom: 0.1em;
 }
 
-
+.code-annotation-anchor {
+  color: $my-orange !important;
+}
 
 .reveal a {
   line-height: 1.3em;
@@ -192,6 +195,11 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
   text-align: center;
 }
 
+// Table output from code cells
+
+.cell-output-display table {
+  font-size: 0.6em;
+}
 
 // Color classes for divider-slide backgrounds,
 // paragraphs and header foregrounds. The !important

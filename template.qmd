@@ -74,22 +74,24 @@ With some content
 Code should set up as green on this sort of H1 slide.
 
 
-## Does subhed structure still work?
+## Does subhead structure still work?
 
 - Yes it does: things appear in the correct hierarchy when you press `O`
 
 
+# Testing [classed]{.fg-pink} [styling]{.fg-lblue} of [words]{.fg-orange}
+
 ---
 
-::::{.huge}
+:::{.huge}
 There's a class for huge text that's not a header
-::::
 
-::::{.huge .fg-green}
-We can specify its color, too
-::::
+[We can specify its color, too]{.fg-orange}
+:::
 
-
+::: aside
+We can set the line-height in the enclosing containiner with a `:::` block, but the classed styling of individual elements [like text]{.fg-red} is done with spans, and span elements do not have line-heights or similar. 
+:::
 ---
 
 ---
@@ -138,6 +140,12 @@ $$p(x) \sim \frac{1}{\sqrt{2\pi\sigma^2}} \exp{ \bigg[-\frac{1}{2}\bigg( \frac{x
 
 ![](images/streams-lakes-bw-100-w-01.jpg)
 
+
+# {background-color="black" background-image="images/streams-lakes-bw-100-w-01.jpg"}
+
+:::{.huge}
+[Image as background]{.fg-yellow .absolute top=25}
+:::
 
 # Code
 
@@ -213,6 +221,7 @@ gss_sm |>
 #| warning: false
 #| message: false
 #| fig-width: 12
+#| fig-height: 3
 #| fig-cap: "GSS Plot"
 
 gss_sm |> 
@@ -230,6 +239,48 @@ gss_sm |>
 
 :::
 
+# Code Part II
+
+## Highlighting lines
+
+For specific lines, use `line1, line2, ...` (`2, 5`).
+
+For a range, use `line1-line2` (`6-10`).
+
+To highlight lines in a progressive manner, use `range1|range2` (`|2,5|6-10`). 
+
+```{.r code-line-numbers="|2|5|6-10"}
+gss_sm |> 
+  group_by(bigregion, religion) |> 
+  tally() |> 
+  mutate(pct = round((n/sum(n))*100), 1) |> 
+  drop_na() |> 
+  ggplot(mapping = aes(x = pct, y = reorder(religion, -pct), fill = religion)) +
+  geom_col() +
+    labs(x = "Percent", y = NULL) +
+    guides(fill = "none") + 
+    facet_wrap(~ bigregion, nrow = 1)
+```
+
+## Code Block Annotation
+
+```{.r}
+gss_sm |> 
+  group_by(bigregion, religion) |> # <1>
+  tally() |> 
+  mutate(pct = round((n/sum(n))*100), 1) |> 
+  drop_na() |> # <2>
+  ggplot(mapping = aes(x = pct, y = reorder(religion, -pct), fill = religion)) +
+  geom_col() +
+    labs(x = "Percent", y = NULL) +
+    guides(fill = "none") + # <3>
+    facet_wrap(~ bigregion, nrow = 1)
+```
+
+1. Sets up the grouping
+2. Be careful using this function
+3. No need for the guide
+
 
 ## Callouts
 
@@ -242,7 +293,7 @@ gss_sm |>
 A note with a headline
 :::
 
-::: {.callout-caution collapse="true"}
+::: {.callout-caution collapse='true'}
 ## Expand To Learn About Collapse
 This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default. Seems not to be working rn. Hm.
 :::
@@ -445,6 +496,21 @@ socviz::organdata |>
 ```
 
 :::
+
+
+## Tables with `skimr` II
+
+
+```{r}
+#| tbl-cap: Skim Table 
+#| output-location: slide
+#| results: asis
+
+socviz::organdata |> 
+    my_skim(where(is.numeric)) |>
+  flextable::as_flextable()
+```
+
 
 ## Installation
 
