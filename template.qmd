@@ -19,6 +19,8 @@ library(kjhslides)
 kjh_register_tenso()
 kjh_set_knitr_opts()
 kjh_set_slide_theme()
+
+library(flipbookr)
 ```
 
 
@@ -201,7 +203,7 @@ library(socviz)
 gss_sm |> 
   group_by(bigregion, religion) |> 
   tally() |> 
-  mutate(pct = round((n/sum(n))*100), 1) |> 
+  mutate(pct = round((n/sum(n))*100, 1)) |> 
   drop_na() |> 
   ggplot(mapping = aes(x = pct, y = reorder(religion, -pct), fill = religion)) +
   geom_col() +
@@ -227,7 +229,7 @@ gss_sm |>
 gss_sm |> 
   group_by(bigregion, religion) |> 
   tally() |> 
-  mutate(pct = round((n/sum(n))*100), 1) |> 
+  mutate(pct = round((n/sum(n))*100, 1)) |> 
   drop_na() |> 
   ggplot(mapping = aes(x = pct, y = reorder(religion, -pct), fill = religion)) +
   geom_col() +
@@ -253,7 +255,7 @@ To highlight lines in a progressive manner, use `range1|range2` (`|2,5|6-10`).
 gss_sm |> 
   group_by(bigregion, religion) |> 
   tally() |> 
-  mutate(pct = round((n/sum(n))*100), 1) |> 
+  mutate(pct = round((n/sum(n))*100, 1)) |> 
   drop_na() |> 
   ggplot(mapping = aes(x = pct, y = reorder(religion, -pct), fill = religion)) +
   geom_col() +
@@ -268,7 +270,7 @@ gss_sm |>
 gss_sm |> 
   group_by(bigregion, religion) |> # <1>
   tally() |> 
-  mutate(pct = round((n/sum(n))*100), 1) |> 
+  mutate(pct = round((n/sum(n))*100, 1)) |> 
   drop_na() |> # <2>
   ggplot(mapping = aes(x = pct, y = reorder(religion, -pct), fill = religion)) +
   geom_col() +
@@ -391,7 +393,7 @@ See [here](https://quarto.org/docs/authoring/figures.html#subfigures).
 gss_sm |> 
   group_by(bigregion, religion) |> 
   tally() |> 
-  mutate(pct = round((n/sum(n))*100), 1) |> 
+  mutate(pct = round((n/sum(n))*100, 1)) |> 
   drop_na() |> 
   ggplot(mapping = 
            aes(x = pct, 
@@ -510,6 +512,32 @@ socviz::organdata |>
     my_skim(where(is.numeric)) |>
   flextable::as_flextable()
 ```
+
+
+# Flipbookr!
+
+This is my bodged fork of `flipbookr` functionality for Quarto, which is at a very early stage
+
+```{r}
+#| label: flipbookexample
+#| echo: false
+#| eval: false
+gss_sm |> 
+  group_by(bigregion, religion) |> 
+  tally() |> 
+  mutate(pct = round((n/sum(n))*100, 1)) |> 
+  drop_na() |> 
+  ggplot(mapping = 
+           aes(x = pct, 
+               y = reorder(religion, -pct), 
+               fill = religion)) +
+  geom_col() +
+    labs(x = "Percent", y = NULL) +
+    guides(fill = "none") + 
+    facet_wrap(~ bigregion, ncol = 2)
+```
+
+`r flipbookr:::chunq_reveal("flipbookexample", title = "Flipbookr example", lcolw = "40", rcolw = "60", smallcode = TRUE)`
 
 
 ## Installation
