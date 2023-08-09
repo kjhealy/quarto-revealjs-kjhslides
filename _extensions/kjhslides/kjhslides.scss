@@ -55,6 +55,7 @@ $dark:          $gray-800 !default;
 // fonts
 $font-family-sans-serif: "Tenso Slab" !default;
 $font-family-monospace: "BerkeleyMono" !default;
+$web-font-path: "No";
 
 $presentation-font-size-root: 2rem !default;
 $presentation-heading-font-weight: 700 !default;
@@ -146,7 +147,7 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 
 
 .smallcode pre, .smallcode code {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
 }
 
 
@@ -333,47 +334,47 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 // Body text: Tenso Slab
 @font-face {
     font-family: 'Tenso Slab';
-    src: url('https://kjhealy.co/fonts/03-tenso-slab-regular_42_ik.woff2') format('woff2');
+    src: url('../../../../../fonts/03-tenso-slab-regular_42_ik.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Tenso Slab';
-    src: url('https://kjhealy.co/fonts/05_tenso-slab-medium_42_ik.woff2') format('woff2');
+    src: url('../../../../../fonts/05_tenso-slab-medium_42_ik.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
 }
 @font-face {
     font-family: 'Tenso Slab';
-    src: url('https://kjhealy.co/fonts/04_tenso_slab_italic_42_ik.woff2') format('woff2');
+    src: url('../../../../../fonts/04_tenso_slab_italic_42_ik.woff2') format('woff2');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Tenso Slab';
-    src: url('https://kjhealy.co/fonts/06_tenso-slab-mediumitalic_42_ik.woff2') format('woff2');
+    src: url('../../../../../fonts/06_tenso-slab-mediumitalic_42_ik.woff2') format('woff2');
     font-weight: bold;
     font-style: italic;
 }
 
 @font-face {
   font-family: 'Tenso Slab';
-  src: url('https://kjhealy.co/fonts/07_tenso-slab-bold_42_ik.woff2') format('woff2');
+  src: url('../../../../../fonts/07_tenso-slab-bold_42_ik.woff2') format('woff2');
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Tenso Slab';
-  src: url('https://kjhealy.co/fonts/07_tenso-slab-bold_42_ik.woff2') format('woff2');
+  src: url('../../../../../fonts/07_tenso-slab-bold_42_ik.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Tenso Slab';
-  src: url('https://kjhealy.co/fonts/08_tenso_slab_bolditalic_42_ik.woff2') format('woff2');
+  src: url('../../../../../fonts/08_tenso_slab_bolditalic_42_ik.woff2') format('woff2');
   font-weight: 500;
   font-style: italic;
 }
@@ -383,25 +384,25 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 
 @font-face {
     font-family: 'BerkeleyMono';
-    src: url('https://kjhealy.co/fonts/BerkeleyMono-Regular.woff2') format('woff2');
+    src: url('../../../../../fonts/BerkeleyMono-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'BerkeleyMono';
-    src: url('https://kjhealy.co/fonts/BerkeleyMono-Bold.woff2') format('woff2');
+    src: url('../../../../../fonts/BerkeleyMono-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
 }
 @font-face {
     font-family: 'BerkeleyMono';
-    src: url('https://kjhealy.co/fonts/BerkeleyMono-Italic.woff2') format('woff2');
+    src: url('../../../../../fonts/BerkeleyMono-Italic.woff2') format('woff2');
     font-weight: normal;
     font-style: italic;
 }
 @font-face {
     font-family: 'BerkeleyMono';
-    src: url('https://kjhealy.co/fonts/BerkeleyMono-BoldItalic.woff2') format('woff2');
+    src: url('../../../../../fonts/BerkeleyMono-BoldItalic.woff2') format('woff2');
     font-weight: bold;
     font-style: italic;
 }

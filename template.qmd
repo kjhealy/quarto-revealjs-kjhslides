@@ -83,6 +83,10 @@ Code should set up as green on this sort of H1 slide.
 
 # Testing [classed]{.fg-pink} [styling]{.fg-lblue} of [words]{.fg-orange}
 
+## [Classed]{.fg-pink} [styling]{.fg-lblue} in [H2]{.fg-orange}
+
+## Is `green()` or not?
+
 ---
 
 :::{.huge}
@@ -516,7 +520,7 @@ socviz::organdata |>
 
 # Flipbookr!
 
-This is my bodged fork of `flipbookr` functionality for Quarto, which is at a very early stage
+This is my hacked-up fork adding Quarto compatibility to `flipbookr`. At a very early stage, but `chunk_reveal()` works ok for two-column output, with columns that can be variably sized.
 
 ```{r}
 #| label: flipbookexample
@@ -539,6 +543,31 @@ gss_sm |>
 
 `r flipbookr:::chunq_reveal("flipbookexample", title = "Flipbookr example", lcolw = "40", rcolw = "60", smallcode = TRUE)`
 
+## Flipbookr example
+
+:::{.smallcode}
+
+```{r}
+#| label: flipbookexample-full
+#| echo: true
+#| output-location: column
+#| code-line-numbers: true
+gss_sm |> 
+  group_by(bigregion, religion) |> 
+  tally() |> 
+  mutate(pct = round((n/sum(n))*100, 1)) |> 
+  drop_na() |> 
+  ggplot(mapping = 
+           aes(x = pct, 
+               y = reorder(religion, -pct), 
+               fill = religion)) +
+  geom_col() +
+    labs(x = "Percent", y = NULL) +
+    guides(fill = "none") + 
+    facet_wrap(~ bigregion, ncol = 2)
+```
+
+::: 
 
 ## Installation
 
