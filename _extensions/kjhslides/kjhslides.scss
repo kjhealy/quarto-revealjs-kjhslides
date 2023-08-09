@@ -53,8 +53,8 @@ $dark:          $gray-800 !default;
 
 
 // fonts
-$font-family-sans-serif: "Tenso Slab" !default;
-$font-family-monospace: "BerkeleyMono" !default;
+$font-family-sans-serif: "Tenso Slab", "Solitas Slab", "Iosevka Slab", "Input Sans Narrow", "IBM Plex Sans Condensed", sans-serif !default;
+$font-family-monospace: "BerkeleyMono", "Berkeley Mono", "IBM Plex Mono", "Input Mono Narrow", "JetBrains Mono", "Fabrikat Mono" "SF Mono" monospace  !default;
 $web-font-path: "No";
 
 $presentation-font-size-root: 2rem !default;
@@ -147,7 +147,7 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 
 
 .smallcode pre, .smallcode code {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
 }
 
 
