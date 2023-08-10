@@ -569,6 +569,62 @@ gss_sm |>
 
 ::: 
 
+
+## Flipbookr Break
+
+Using `#BREAK` 
+
+```{r}
+#| label: flipbookopts1
+#| echo: false
+#| eval: false
+gss_sm |> 
+  group_by(bigregion, religion) |> 
+  tally() |> 
+  mutate(pct = round((n/sum(n))*100, 1)) |> 
+  drop_na() |> #BREAK
+  ggplot(mapping = 
+           aes(x = pct, 
+               y = reorder(religion, -pct), 
+               fill = religion)) +
+  geom_col() +
+    labs(x = "Percent", y = NULL) +
+    guides(fill = "none") + 
+    facet_wrap(~ bigregion, ncol = 2)
+```
+
+`r flipbookr:::chunq_reveal("flipbookopts1", break_type = "user", title = "Flipbookr Break", lcolw = "40", rcolw = "60", smallcode = TRUE)`
+
+
+## Flipbookr Rotate
+
+Using `#ROTATE` 
+
+```{r}
+#| label: flipbookopts2
+#| echo: false
+#| eval: false
+gss_sm |> 
+  group_by(bigregion, religion) |> 
+  tally() |> 
+  mutate(pct = round((n/sum(n))*100, 1)) |> 
+  drop_na() |> 
+  ggplot(mapping = 
+           aes(x = pct, 
+               y = reorder(religion, -pct), 
+               fill = religion)) +
+  geom_col() +
+  scale_fill_viridis_d(option = "magma") + #ROTATE
+  scale_fill_viridis_d(option = "cividis") + #ROTATE
+  scale_fill_viridis_d(option = "plasma") + #ROTATE
+    labs(x = "Percent", y = NULL) +
+    guides(fill = "none") + 
+    facet_wrap(~ bigregion, ncol = 2)
+```
+
+`r flipbookr:::chunq_reveal("flipbookopts2", break_type = "rotate", title = "Flipbookr Rotate", lcolw = "40", rcolw = "60", smallcode = TRUE)`
+
+
 ## Installation
 
 Install the theme without the template:
