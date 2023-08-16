@@ -625,7 +625,9 @@ gss_sm |>
 `r flipbookr:::chunq_reveal("flipbookopts2", break_type = "rotate", title = "Flipbookr Rotate", lcolw = "40", rcolw = "60", smallcode = TRUE)`
 
 
-## Installation
+# Installation
+
+## Installation 
 
 Install the theme without the template:
 
