@@ -270,7 +270,7 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
   text-align: center;
 }
 
-.reveal .slide h2 code {
+.reveal .slide h1 h2 h3 code {
     font-size: inherit;
 }
 
@@ -310,6 +310,10 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 .inv-title code {
   // color: $my-green !important;
   background-color: $my-blue;
+  font-size: inherit;
+}
+
+.title code {
   font-size: inherit;
 }
 
