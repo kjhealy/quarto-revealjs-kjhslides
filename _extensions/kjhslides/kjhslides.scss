@@ -28,6 +28,7 @@ $my-dark-text: #333333;
 $kjh-grey: #F6F6F6;
 $main-title-inverse: #252F3E;
 $chunk-background: #FCF6E6;
+$chunk-foreground: $gray-900;
 
 $blue:    $my-blue !default;
 $indigo:  $my-indigo !default;
@@ -55,7 +56,7 @@ $dark:          $gray-800 !default;
 // fonts
 $font-family-sans-serif: "Tenso Slab", "Solitas Slab", "Iosevka Slab", "Input Sans Narrow", "IBM Plex Sans Condensed", sans-serif !default;
 $font-family-monospace: "BerkeleyMono", "Berkeley Mono", "IBM Plex Mono", "Input Mono Narrow", "JetBrains Mono", "Fabrikat Mono" "SF Mono" monospace  !default;
-$web-font-path: "No";
+$web-font-path: "";
 
 $presentation-font-size-root: 2rem !default;
 $presentation-heading-font-weight: 700 !default;
@@ -158,6 +159,7 @@ $presentation-h6-font-size: $presentation-font-size-root * 0.8;
 
 .cell-output, .cell-output-stdout pre code {
   background-color: $chunk-background;
+  color: $chunk-foreground;
   margin-top: 0.15em;
 }
 
